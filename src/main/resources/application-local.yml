@@ -1,0 +1,52 @@
+spring:
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crm_dev?currentSchema=crm
+    username: postgres
+    password: root
+  sql:
+    init:
+      migration-locations: classpath:db/migration
+server:
+  port: 8082
+application:
+  hash:
+    log-rounds: 12
+  jwt:
+    private-key: "-----BEGIN PRIVATE KEY-----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-----END PRIVATE KEY-----"
+    public-key: "-----BEGIN PUBLIC KEY-----MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAwIMkj69y/3d+jfqyL9ejvMGfMT71pL6fksYWx3ORwKhZ9WKEmtveP0r6NvXu32McR7ySE3O1CpWfsJXSKpljaDH6pA0fgqSvy5q3YSifstsQkCEwQUnVmwDjz8qUARrJG3oQ2NmkgPo+eO/6SFsYZ9kssirNnyg3oZsO0d6OueU8zFQPYuUkfuY9d+wZmdyOcvMKLT3wTv7X4mnBNjFGsgznl1JMY8OQTLfra3amY6gmH0cs/vywsPv0WFi0gAtxqVzLeP6+gT10F661336ce+ujm5t3l9oaKHvqzCu6sU4m2s6JOe0a+NpFFbyckn8TKOtslzZUqQ+uSn1geN6rrImolpRDVZBWuP30x6gXtbfmoewDIqN680sqxlW1vmo2PiGK4qjvbWCYw0+paC0nsjXY/YfQCoOXZztfLw59C+zwM/1nfymkcnz66heYqsqngni2Ep74wqWlJAJzjAXqYe3L6EyZPEsvnHoLj2nTOiDJHdG4BKPcI4PwCvv3b7bu21eIBH8Z0bZusf9iGkVz5593XcWHcU2q6zKDRqFVnKQh/pp/wxAJS3o0IUL/TiY5vxWxr5ZyvKdeSW9nnrxsuwuRFZTDRyakmnXCpiy5mB2EU0olPRdmUZEQiMBY8QzSuJJSp+43KS+d9p9+jV712fJ1o1Tcc5wkNVb3c4+3FI0CAwEAAQ==-----END PUBLIC KEY-----"
+  token:
+    access-token:
+      length: 30
+      lifetime: PT5M
+    refresh-token:
+      length: 30
+      lifetime: P3D
+  security:
+    authentication:
+      excluded:
+        - "/v1/authentication/login"
+        - "/v1/user"
+        - "/sets"
+        - "/cards"
+        - "/v2/cards"
+        - "/v2/sets"
+  third-party-apis:
+    pokemon-tcg:
+      api-key: "f452c0e2-0938-4ed6-817e-339b5a7759d3"
+      base-url: "https://api.pokemontcg.io"
+      endpoints:
+        cards: "/v2/cards"
+        sets: "/v2/sets"
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: basic
+

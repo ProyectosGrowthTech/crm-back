@@ -1,0 +1,10 @@
+spring:
+  flyway:
+    enabled: false
+  redis:
+    host: localhost
+    port: 6379
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pokemon_api?currentSchema=pokemon_api
+    username: postgres
+    password: root

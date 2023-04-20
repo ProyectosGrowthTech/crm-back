@@ -1,0 +1,23 @@
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    username TEXT NOT NULL,
+    role_id BIGINT NOT NULL,
+    password TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOL NOT NULL DEFAULT true,
+    CONSTRAINT fk_role_id FOREIGN KEY (role_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE role (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL
+);
+
+CREATE TABLE session (
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    user_ip TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
