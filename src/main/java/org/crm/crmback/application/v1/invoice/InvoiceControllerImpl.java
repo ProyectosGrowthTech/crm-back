@@ -31,6 +31,7 @@ public class InvoiceControllerImpl implements InvoiceController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
   }
 
+  @Override
   public ResponseEntity<List<Invoice>> getInvoices(@Valid InvoiceRequest requestBody) {
 
     List<Invoice> resultInvoices =
@@ -38,9 +39,18 @@ public class InvoiceControllerImpl implements InvoiceController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoices);
   }
 
+  @Override
   public ResponseEntity<Invoice> getInvoiceById(@Valid InvoiceRequest requestBody) {
 
     Invoice resultInvoice = invoiceService.getInvoiceById(requestBody.invoiceId());
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
+  }
+
+  @Override
+  public ResponseEntity<List<Invoice>> getInvoicesByCustomerId(InvoiceRequest requestBody) {
+    List<Invoice> resultInvoice =
+        invoiceService.getInvoicesByCustomerId(
+            requestBody.customerId(), requestBody.page(), requestBody.pageSize());
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
   }
 }

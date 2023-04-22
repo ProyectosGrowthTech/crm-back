@@ -29,6 +29,17 @@ public class InvoicePersistenceFacadeImpl implements InvoicePersistenceFacade {
     return invoiceMapper.invoiceEntityToInvoice(foundInvoice);
   }
 
+  public List<Invoice> findBycustomerId(Long customerId, Integer page, Integer pageSize) {
+
+    Pageable pageable = PageRequest.of(page, pageSize, Sort.by("Id").descending());
+    List<InvoiceEntity> invoiceEntities = invoiceRepository.findBycustomerId(customerId, pageable);
+    List<Invoice> invoices = new ArrayList<>();
+    for (InvoiceEntity invoiceEntity : invoiceEntities) {
+      invoices.add(invoiceMapper.invoiceEntityToInvoice(invoiceEntity));
+    }
+    return invoices;
+  }
+
   @Override
   public Invoice save(Invoice newInvoice) {
     InvoiceEntity resultInvoice =

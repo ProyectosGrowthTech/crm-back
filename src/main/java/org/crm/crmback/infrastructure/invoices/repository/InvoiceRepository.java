@@ -9,5 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface InvoiceRepository extends CrudRepository<InvoiceEntity, Long> {
   Optional<InvoiceEntity> findById(Long id);
 
+  List<InvoiceEntity> findBycustomerId(Long customerId, Pageable pageable);
+
   List<InvoiceEntity> findAll(Pageable pageable);
 }
