@@ -37,4 +37,10 @@ public class InvoiceControllerImpl implements InvoiceController {
         invoiceService.getInvoices(requestBody.page(), requestBody.pageSize());
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoices);
   }
+
+  public ResponseEntity<Invoice> getInvoiceById(@Valid InvoiceRequest requestBody) {
+
+    Invoice resultInvoice = invoiceService.getInvoiceById(requestBody.invoiceId());
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
+  }
 }
