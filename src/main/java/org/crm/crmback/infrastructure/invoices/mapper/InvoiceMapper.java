@@ -14,7 +14,6 @@ public class InvoiceMapper {
         .invoiceDate(invoiceEntity.getInvoiceDate())
         .totalAmount(invoiceEntity.getTotalAmount())
         .status(invoiceEntity.getStatus())
-        .modifiedBy(invoiceEntity.getModifiedBy())
         .build();
   }
 
@@ -25,7 +24,6 @@ public class InvoiceMapper {
         .invoiceDate(invoice.getInvoiceDate())
         .totalAmount(invoice.getTotalAmount())
         .status(invoice.getStatus())
-        .modifiedBy(invoice.getModifiedBy())
         .build();
   }
 }

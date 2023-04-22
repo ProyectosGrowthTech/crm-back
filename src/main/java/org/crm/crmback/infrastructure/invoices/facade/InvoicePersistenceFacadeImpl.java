@@ -25,8 +25,9 @@ public class InvoicePersistenceFacadeImpl implements InvoicePersistenceFacade {
   }
 
   @Override
-  public void save(Invoice newInvoice) {
-    InvoiceRepository.save(InvoiceMapper.invoiceToInvoiceEntity(newInvoice));
+  public Invoice save(Invoice newInvoice) {
+    InvoiceEntity resultInvoice = InvoiceRepository.save(InvoiceMapper.invoiceToInvoiceEntity(newInvoice));
+    return InvoiceMapper.invoiceEntityToInvoice(resultInvoice);
   }
 
   @Override
