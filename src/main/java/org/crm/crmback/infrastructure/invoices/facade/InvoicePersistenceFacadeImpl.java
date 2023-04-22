@@ -1,11 +1,16 @@
 package org.crm.crmback.infrastructure.invoices.facade;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
 import org.crm.crmback.infrastructure.invoices.entity.InvoiceEntity;
 import org.crm.crmback.infrastructure.invoices.mapper.InvoiceMapper;
 import org.crm.crmback.infrastructure.invoices.repository.InvoiceRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,6 +34,18 @@ public class InvoicePersistenceFacadeImpl implements InvoicePersistenceFacade {
     InvoiceEntity resultInvoice =
         invoiceRepository.save(invoiceMapper.invoiceToInvoiceEntity(newInvoice));
     return invoiceMapper.invoiceEntityToInvoice(resultInvoice);
+  }
+
+  @Override
+  public List<Invoice> getInvoices(Integer page, Integer pageSize) {
+
+    Pageable pageable = PageRequest.of(page, pageSize, Sort.by("Id").descending());
+    List<InvoiceEntity> invoiceEntities = invoiceRepository.findAll(pageable);
+    List<Invoice> invoices = new ArrayList<>();
+    for (InvoiceEntity invoiceEntity : invoiceEntities) {
+      invoices.add(invoiceMapper.invoiceEntityToInvoice(invoiceEntity));
+    }
+    return invoices;
   }
 
   @Override

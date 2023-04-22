@@ -1,5 +1,6 @@
 package org.crm.crmback.domain.service.invoice;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.domain.model.invoices.NewInvoiceData;
@@ -26,5 +27,9 @@ public class InvoiceServiceImpl implements InvoiceService {
             .status(newInvoiceData.status())
             .build();
     return invoicePersistenceFacade.save(newInvoice);
+  }
+
+  public List<Invoice> getInvoices(Integer page, Integer pageSize) {
+    return invoicePersistenceFacade.getInvoices(page, pageSize);
   }
 }

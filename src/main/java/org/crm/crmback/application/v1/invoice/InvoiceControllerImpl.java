@@ -1,9 +1,10 @@
 package org.crm.crmback.application.v1.invoice;
 
+import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.crm.crmback.application.v1.invoice.dto.CreateInvoiceRequest;
+import org.crm.crmback.application.v1.invoice.dto.InvoiceRequest;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.domain.model.invoices.NewInvoiceData;
 import org.crm.crmback.domain.service.invoice.InvoiceService;
@@ -19,7 +20,7 @@ public class InvoiceControllerImpl implements InvoiceController {
   private final InvoiceService invoiceService;
 
   @Override
-  public ResponseEntity<Invoice> createInvoice(@Valid CreateInvoiceRequest requestBody) {
+  public ResponseEntity<Invoice> createInvoice(@Valid InvoiceRequest requestBody) {
     NewInvoiceData newInvoiceData =
         new NewInvoiceData(
             requestBody.customerId(),
@@ -28,5 +29,12 @@ public class InvoiceControllerImpl implements InvoiceController {
             requestBody.status());
     Invoice resultInvoice = invoiceService.createInvoice(newInvoiceData);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
+  }
+
+  public ResponseEntity<List<Invoice>> getInvoices(@Valid InvoiceRequest requestBody) {
+
+    List<Invoice> resultInvoices =
+        invoiceService.getInvoices(requestBody.page(), requestBody.pageSize());
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoices);
   }
 }
