@@ -9,4 +9,6 @@ public interface InvoiceService {
   Invoice createInvoice(NewInvoiceData newInvoiceData);
 
   List<Invoice> getInvoices(Integer page, Integer pageSize);
+
+  Invoice getInvoiceById(Long id);
 }

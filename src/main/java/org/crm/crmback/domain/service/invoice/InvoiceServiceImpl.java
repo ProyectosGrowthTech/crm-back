@@ -4,15 +4,12 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.domain.model.invoices.NewInvoiceData;
-import org.crm.crmback.infrastructure.hash.HashFacade;
 import org.crm.crmback.infrastructure.invoices.facade.InvoicePersistenceFacade;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class InvoiceServiceImpl implements InvoiceService {
-
-  private final HashFacade hashFacade;
 
   private final InvoicePersistenceFacade invoicePersistenceFacade;
 
@@ -31,5 +28,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 
   public List<Invoice> getInvoices(Integer page, Integer pageSize) {
     return invoicePersistenceFacade.getInvoices(page, pageSize);
+  }
+
+  public Invoice getInvoiceById(Long id) {
+    return invoicePersistenceFacade.findById(id);
   }
 }
