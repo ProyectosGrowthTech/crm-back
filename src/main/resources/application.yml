@@ -22,4 +22,3 @@ application:
         - "/cards"
         - "/v2/cards"
         - "/v2/sets"
-        - "/v1/invoice/createInvoice"
