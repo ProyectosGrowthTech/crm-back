@@ -7,7 +7,6 @@ import org.crm.crmback.application.v1.invoice.dto.CreateInvoiceRequest;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.domain.model.invoices.NewInvoiceData;
 import org.crm.crmback.domain.service.invoice.InvoiceService;
-import org.crm.crmback.infrastructure.security.model.RequestSecurityContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class InvoiceControllerImpl implements InvoiceController {
 
   private final InvoiceService invoiceService;
-
-  private final RequestSecurityContextHolder requestSecurityContextHolder;
 
   @Override
   public ResponseEntity<Invoice> createInvoice(@Valid CreateInvoiceRequest requestBody) {
