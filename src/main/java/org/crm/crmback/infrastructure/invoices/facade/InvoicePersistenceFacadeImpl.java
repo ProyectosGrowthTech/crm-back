@@ -4,34 +4,35 @@ import lombok.RequiredArgsConstructor;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
 import org.crm.crmback.infrastructure.invoices.entity.InvoiceEntity;
-import org.crm.crmback.infrastructure.invoices.repository.InvoiceRepository;
 import org.crm.crmback.infrastructure.invoices.mapper.InvoiceMapper;
+import org.crm.crmback.infrastructure.invoices.repository.InvoiceRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class InvoicePersistenceFacadeImpl implements InvoicePersistenceFacade {
 
-  private final InvoiceRepository InvoiceRepository;
+  private final InvoiceRepository invoiceRepository;
 
-  private final InvoiceMapper InvoiceMapper;
+  private final InvoiceMapper invoiceMapper;
 
-  public Invoice findById(Long Id) {
+  public Invoice findById(Long id) {
     InvoiceEntity foundInvoice =
-        InvoiceRepository
-            .findById(Id)
-            .orElseThrow(() -> new ItemNotFoundException("Invoice " + Id + " not found"));
-    return InvoiceMapper.invoiceEntityToInvoice(foundInvoice);
+        invoiceRepository
+            .findById(id)
+            .orElseThrow(() -> new ItemNotFoundException("Invoice " + id + " not found"));
+    return invoiceMapper.invoiceEntityToInvoice(foundInvoice);
   }
 
   @Override
   public Invoice save(Invoice newInvoice) {
-    InvoiceEntity resultInvoice = InvoiceRepository.save(InvoiceMapper.invoiceToInvoiceEntity(newInvoice));
-    return InvoiceMapper.invoiceEntityToInvoice(resultInvoice);
+    InvoiceEntity resultInvoice =
+        invoiceRepository.save(invoiceMapper.invoiceToInvoiceEntity(newInvoice));
+    return invoiceMapper.invoiceEntityToInvoice(resultInvoice);
   }
 
   @Override
-  public boolean isExistingInvoice(Long Id) {
-    return InvoiceRepository.findById(Id).isPresent();
+  public boolean isExistingInvoice(Long id) {
+    return invoiceRepository.findById(id).isPresent();
   }
 }
