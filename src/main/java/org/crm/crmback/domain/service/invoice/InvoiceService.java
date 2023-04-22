@@ -11,4 +11,6 @@ public interface InvoiceService {
   List<Invoice> getInvoices(Integer page, Integer pageSize);
 
   Invoice getInvoiceById(Long id);
+
+  List<Invoice> getInvoicesByCustomerId(Long id, Integer page, Integer pageSize);
 }

@@ -27,4 +27,10 @@ public interface InvoiceController {
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<Invoice> getInvoiceById(@RequestBody InvoiceRequest requestBody);
+
+  @GetMapping(
+      path = "/getInvoicesByCustomerId",
+      consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<List<Invoice>> getInvoicesByCustomerId(@RequestBody InvoiceRequest requestBody);
 }

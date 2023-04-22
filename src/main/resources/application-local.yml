@@ -40,6 +40,7 @@ application:
         - "/v1/invoice/createinvoice"
         - "/v1/invoice/getinvoices"
         - "/v1/invoice/getinvoicebyid"
+        - "/v1/invoice/getinvoicesbycustomerid"
   third-party-apis:
     pokemon-tcg:
       api-key: "f452c0e2-0938-4ed6-817e-339b5a7759d3"
