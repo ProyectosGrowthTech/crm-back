@@ -40,17 +40,22 @@ public class InvoiceControllerImpl implements InvoiceController {
   }
 
   @Override
-  public ResponseEntity<Invoice> getInvoiceById(@Valid InvoiceRequest requestBody) {
+  public ResponseEntity<Invoice> getInvoiceById(Long id) {
 
-    Invoice resultInvoice = invoiceService.getInvoiceById(requestBody.invoiceId());
+    Invoice resultInvoice = invoiceService.getInvoiceById(id);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
   }
 
   @Override
-  public ResponseEntity<List<Invoice>> getInvoicesByCustomerId(InvoiceRequest requestBody) {
-    List<Invoice> resultInvoice =
-        invoiceService.getInvoicesByCustomerId(
-            requestBody.customerId(), requestBody.page(), requestBody.pageSize());
+  public ResponseEntity<List<Invoice>> getInvoicesByCustomerId(
+      Long id, Integer page, Integer pageSize) {
+    List<Invoice> resultInvoice = invoiceService.getInvoicesByCustomerId(id, page, pageSize);
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
+  }
+
+  @Override
+  public ResponseEntity<Invoice> deleteInvoiceById(Long id) {
+    Invoice resultInvoice = invoiceService.deleteInvoiceById(id);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
   }
 }

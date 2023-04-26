@@ -10,27 +10,34 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/v1/invoice")
 public interface InvoiceController {
 
-  @PutMapping(
-      path = "/createInvoice",
+  @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<Invoice> createInvoice(@RequestBody InvoiceRequest requestBody);
 
   @GetMapping(
-      path = "/getInvoices",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<List<Invoice>> getInvoices(@RequestBody InvoiceRequest requestBody);
 
   @GetMapping(
-      path = "/getInvoiceById",
+      path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<Invoice> getInvoiceById(@RequestBody InvoiceRequest requestBody);
+  ResponseEntity<Invoice> getInvoiceById(@PathVariable("id") Long id);
 
   @GetMapping(
-      path = "/getInvoicesByCustomerId",
+      path = "/customer/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<List<Invoice>> getInvoicesByCustomerId(@RequestBody InvoiceRequest requestBody);
+  ResponseEntity<List<Invoice>> getInvoicesByCustomerId(
+      @PathVariable("id") Long id,
+      @PathVariable("page") Integer page,
+      @PathVariable("pageSize") Integer pageSize);
+
+  @DeleteMapping(
+      path = "/{id}",
+      consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  ResponseEntity<Invoice> deleteInvoiceById(@PathVariable("id") Long id);
 }

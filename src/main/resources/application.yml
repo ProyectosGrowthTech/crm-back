@@ -22,3 +22,6 @@ application:
         - "/cards"
         - "/v2/cards"
         - "/v2/sets"
+        - "/v1/invoice"
+        - "/v1/invoice/**"
+        - "/v1/invoice/customer"

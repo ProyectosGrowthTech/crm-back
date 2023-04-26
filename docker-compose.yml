@@ -13,9 +13,9 @@ services:
     image: postgres:14.4
     restart: always
     environment:
-      POSTGRES_USER: pokemonapi
-      POSTGRES_PASSWORD: c0mpl3xp4ssw0rd
-      POSTGRES_DB: pokemon_api
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: crm_dev
     volumes:
       - ${HOME}/docker/postgres/data:/var/lib/postgresql/data
     networks:
