@@ -14,4 +14,6 @@ public interface InvoicePersistenceFacade {
   List<Invoice> getInvoices(Integer page, Integer pageSize);
 
   boolean isExistingInvoice(Long id);
+
+  Invoice deleteInvoiceById(Long id);
 }

@@ -3,9 +3,9 @@ spring:
     host: redis
     port: 6379
   datasource:
-    url: jdbc:postgresql://rdbms:5432/pokemon_api
-    username: pokemonapi
-    password: c0mpl3xp4ssw0rd
+    url: jdbc:postgresql://rdbms:5432/crm_dev?currentSchema=crm
+    username: postgres
+    password: root
 
 application:
   security:
@@ -17,6 +17,9 @@ application:
         - "/cards"
         - "/v2/cards"
         - "/v2/sets"
+        - "/v1/invoice"
+        - "/v1/invoice/**"
+        - "/v1/invoice/customer"
   hash:
     log-rounds: 12
   jwt:
@@ -36,3 +39,8 @@ application:
       endpoints:
         cards: "/v2/cards"
         sets: "/v2/sets"
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: basic

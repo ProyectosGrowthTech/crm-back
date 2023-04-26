@@ -63,4 +63,11 @@ public class InvoicePersistenceFacadeImpl implements InvoicePersistenceFacade {
   public boolean isExistingInvoice(Long id) {
     return invoiceRepository.findById(id).isPresent();
   }
+
+  @Override
+  public Invoice deleteInvoiceById(Long id) {
+    InvoiceEntity invoiceEntity = invoiceRepository.findById(id).get();
+    invoiceRepository.delete(invoiceEntity);
+    return invoiceMapper.invoiceEntityToInvoice(invoiceEntity);
+  }
 }
