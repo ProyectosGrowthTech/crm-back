@@ -2,6 +2,8 @@ package org.crm.crmback.application.v1.invoice;
 
 import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.crm.crmback.application.v1.invoice.dto.InvoiceRequest;
@@ -32,10 +34,10 @@ public class InvoiceControllerImpl implements InvoiceController {
   }
 
   @Override
-  public ResponseEntity<List<Invoice>> getInvoices(@Valid InvoiceRequest requestBody) {
+  public ResponseEntity<List<Invoice>> getInvoices(
+      @PositiveOrZero Integer page, @Positive Integer pageSize) {
 
-    List<Invoice> resultInvoices =
-        invoiceService.getInvoices(requestBody.page(), requestBody.pageSize());
+    List<Invoice> resultInvoices = invoiceService.getInvoices(page, pageSize);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoices);
   }
 
@@ -54,8 +56,12 @@ public class InvoiceControllerImpl implements InvoiceController {
   }
 
   @Override
-  public ResponseEntity<Invoice> deleteInvoiceById(Long id) {
-    Invoice resultInvoice = invoiceService.deleteInvoiceById(id);
-    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
+  public ResponseEntity<Void> deleteInvoiceById(Long id) {
+    try {
+      invoiceService.deleteInvoiceById(id);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 }

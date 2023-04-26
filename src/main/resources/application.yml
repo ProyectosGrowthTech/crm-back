@@ -24,4 +24,5 @@ application:
         - "/v2/sets"
         - "/v1/invoice"
         - "/v1/invoice/**"
+        - "/v1/invoice/**/**"
         - "/v1/invoice/customer"
