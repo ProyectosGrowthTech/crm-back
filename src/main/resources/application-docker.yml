@@ -6,7 +6,6 @@ spring:
     url: jdbc:postgresql://rdbms:5432/crm_dev?currentSchema=crm
     username: postgres
     password: root
-
 application:
   security:
     authentication:
@@ -17,10 +16,7 @@ application:
         - "/cards"
         - "/v2/cards"
         - "/v2/sets"
-        - "/v1/invoice"
-        - "/v1/invoice/**"
         - "/v1/invoice/**/**"
-        - "/v1/invoice/customer"
   hash:
     log-rounds: 12
   jwt:
