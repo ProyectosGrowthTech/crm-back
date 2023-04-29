@@ -56,13 +56,13 @@ public class AuthenticationFilter implements Filter {
   }
 
   private boolean isExcludedEndpoint(HttpServletRequest request) {
-    String requestURI = request.getRequestURI().toLowerCase();
+    String requestUri = request.getRequestURI().toLowerCase();
     List<String> excludedPatterns = secrets.security().authentication().excluded();
 
     // Use AntPathMatcher to match request URI against excluded patterns
     AntPathMatcher pathMatcher = new AntPathMatcher();
     for (String pattern : excludedPatterns) {
-      if (pathMatcher.match(pattern, requestURI)) {
+      if (pathMatcher.match(pattern, requestUri)) {
         return true;
       }
     }
