@@ -2,6 +2,7 @@ package org.crm.crmback.infrastructure.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.crm.crmback.infrastructure.security.model.RequestSecurityContextHolde
 import org.crm.crmback.infrastructure.security.model.UserClaims;
 import org.crm.crmback.infrastructure.utils.StringUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.MimeTypeUtils;
 
 @RequiredArgsConstructor
@@ -54,11 +56,17 @@ public class AuthenticationFilter implements Filter {
   }
 
   private boolean isExcludedEndpoint(HttpServletRequest request) {
-    return secrets
-        .security()
-        .authentication()
-        .excluded()
-        .contains(request.getRequestURI().toLowerCase());
+    String requestUri = request.getRequestURI().toLowerCase();
+    List<String> excludedPatterns = secrets.security().authentication().excluded();
+
+    // Use AntPathMatcher to match request URI against excluded patterns
+    AntPathMatcher pathMatcher = new AntPathMatcher();
+    for (String pattern : excludedPatterns) {
+      if (pathMatcher.match(pattern, requestUri)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private String getAccessToken(HttpServletRequest request) throws AuthenticationException {
