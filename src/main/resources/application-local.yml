@@ -37,6 +37,10 @@ application:
         - "/cards"
         - "/v2/cards"
         - "/v2/sets"
+        - "/v1/invoice"
+        - "/v1/invoice/**"
+        - "/v1/invoice/**/**"
+        - "/v1/invoice/customer"
   third-party-apis:
     pokemon-tcg:
       api-key: "f452c0e2-0938-4ed6-817e-339b5a7759d3"
