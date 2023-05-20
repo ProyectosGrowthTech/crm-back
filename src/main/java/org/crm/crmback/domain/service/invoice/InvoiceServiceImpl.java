@@ -34,10 +34,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     return invoicePersistenceFacade.findById(id);
   }
 
-  public List<Invoice> getInvoicesByCustomerId(Long customerId, Integer page, Integer pageSize) {
-    return invoicePersistenceFacade.findBycustomerId(customerId, page, pageSize);
-  }
-
   public Invoice deleteInvoiceById(Long id) {
     return invoicePersistenceFacade.deleteInvoiceById(id);
   }

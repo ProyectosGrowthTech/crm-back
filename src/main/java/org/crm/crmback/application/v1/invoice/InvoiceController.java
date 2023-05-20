@@ -28,15 +28,6 @@ public interface InvoiceController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<Invoice> getInvoiceById(@PathVariable("id") Long id);
 
-  @GetMapping(
-      path = "/customer/{id}",
-      consumes = MediaType.APPLICATION_JSON_VALUE,
-      produces = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<List<Invoice>> getInvoicesByCustomerId(
-      @PathVariable("id") Long id,
-      @RequestParam(name = "page", defaultValue = "1") Integer page,
-      @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize);
-
   @DeleteMapping(
       path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,

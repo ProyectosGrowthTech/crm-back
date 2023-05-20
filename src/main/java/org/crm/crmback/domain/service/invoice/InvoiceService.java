@@ -12,7 +12,5 @@ public interface InvoiceService {
 
   Invoice getInvoiceById(Long id);
 
-  List<Invoice> getInvoicesByCustomerId(Long id, Integer page, Integer pageSize);
-
   Invoice deleteInvoiceById(Long id);
 }
