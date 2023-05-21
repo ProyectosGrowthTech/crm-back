@@ -18,7 +18,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     // TODO: Implement logic business to check if invoice already exists, that customer exists, etc.
     Invoice newInvoice =
         Invoice.builder()
-            .customerId(newInvoiceData.customerId())
             .invoiceDate(newInvoiceData.invoiceDate())
             .totalAmount(newInvoiceData.totalAmount())
             .status(newInvoiceData.status())
