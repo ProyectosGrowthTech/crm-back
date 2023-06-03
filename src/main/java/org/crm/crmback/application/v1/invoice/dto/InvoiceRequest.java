@@ -6,7 +6,6 @@ import javax.validation.constraints.Positive;
 
 public record InvoiceRequest(
     @Positive Long invoiceId,
-    @Positive Long customerId,
     Date invoiceDate,
     BigDecimal totalAmount,
     String status) {}

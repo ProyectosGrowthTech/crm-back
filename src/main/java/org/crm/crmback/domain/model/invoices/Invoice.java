@@ -14,8 +14,6 @@ import lombok.Data;
 public class Invoice {
   private Long id;
 
-  private Long customerId;
-
   private Date invoiceDate;
 
   private BigDecimal totalAmount;

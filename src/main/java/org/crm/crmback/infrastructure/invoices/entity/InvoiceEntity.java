@@ -17,7 +17,6 @@ public class InvoiceEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private Long customerId;
 
   private Date invoiceDate;
 

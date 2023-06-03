@@ -10,7 +10,6 @@ public class InvoiceMapper {
   public Invoice invoiceEntityToInvoice(InvoiceEntity invoiceEntity) {
     return Invoice.builder()
         .id(invoiceEntity.getId())
-        .customerId(invoiceEntity.getCustomerId())
         .invoiceDate(invoiceEntity.getInvoiceDate())
         .totalAmount(invoiceEntity.getTotalAmount())
         .status(invoiceEntity.getStatus())
@@ -20,7 +19,6 @@ public class InvoiceMapper {
   public InvoiceEntity invoiceToInvoiceEntity(Invoice invoice) {
     return InvoiceEntity.builder()
         .id(invoice.getId())
-        .customerId(invoice.getCustomerId())
         .invoiceDate(invoice.getInvoiceDate())
         .totalAmount(invoice.getTotalAmount())
         .status(invoice.getStatus())
