@@ -25,7 +25,6 @@ public class InvoiceControllerImpl implements InvoiceController {
   public ResponseEntity<Invoice> createInvoice(@Valid InvoiceRequest requestBody) {
     NewInvoiceData newInvoiceData =
         new NewInvoiceData(
-            requestBody.customerId(),
             requestBody.invoiceDate(),
             requestBody.totalAmount(),
             requestBody.status());
