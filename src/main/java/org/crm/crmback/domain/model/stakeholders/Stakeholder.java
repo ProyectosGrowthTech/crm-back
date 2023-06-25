@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.stakeholders;
+package org.crm.crmback.domain.model.stakeholders;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,10 +8,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
-import org.crm.crmback.infrastructure.addresses.AddressEntity;
+import org.crm.crmback.domain.model.addresses.Address;
+import org.crm.crmback.domain.model.stakeholdertypes.StakeholderType;
 import org.crm.crmback.infrastructure.invoicesstakeholders.InvoicesStakeholderEntity;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
-import org.crm.crmback.infrastructure.stakeholdertypes.StakeholderTypeEntity;
 
 @Builder
 @AllArgsConstructor
@@ -20,7 +20,7 @@ import org.crm.crmback.infrastructure.stakeholdertypes.StakeholderTypeEntity;
 @Setter
 @Entity
 @Table(name = "stakeholders")
-public class StakeholderEntity implements Serializable {
+public class Stakeholder implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,16 +52,16 @@ public class StakeholderEntity implements Serializable {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "business_address_id")
-  private AddressEntity businessAddress;
+  private Address businessAddress;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "tax_address_id")
-  private AddressEntity taxAddress;
+  private Address taxAddress;
 
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "stakeholder_type_id", nullable = false)
-  private StakeholderTypeEntity stakeholderType;
+  private StakeholderType stakeholderType;
 
   @Column(name = "created_at")
   private Date createdAt;
@@ -75,4 +75,23 @@ public class StakeholderEntity implements Serializable {
 
   @OneToMany(mappedBy = "stakeholder")
   private Set<InvoicesStakeholderEntity> invoicesStakeholders = new LinkedHashSet<>();
+
+  public Stakeholder(
+      String name,
+      String type,
+      String identificationCode,
+      String email,
+      String phone,
+      Address businessAddress,
+      Address taxAddress,
+      StakeholderType stakeholderType) {
+    this.name = name;
+    this.type = type;
+    this.identificationCode = identificationCode;
+    this.email = email;
+    this.phone = phone;
+    this.businessAddress = businessAddress;
+    this.taxAddress = taxAddress;
+    this.stakeholderType = stakeholderType;
+  }
 }

@@ -4,8 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import lombok.*;
+import org.crm.crmback.domain.model.stakeholders.Stakeholder;
 import org.crm.crmback.infrastructure.invoices.entity.InvoiceEntity;
-import org.crm.crmback.infrastructure.stakeholders.StakeholderEntity;
 
 @Builder
 @AllArgsConstructor
@@ -29,5 +29,5 @@ public class InvoicesStakeholderEntity implements Serializable {
   @NotNull
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "stakeholder_id", nullable = false)
-  private StakeholderEntity stakeholder;
+  private Stakeholder stakeholder;
 }
