@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.stakeholdertypes;
+package org.crm.crmback.domain.model.stakeholdertypes;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,8 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
+import org.crm.crmback.domain.model.stakeholders.Stakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
-import org.crm.crmback.infrastructure.stakeholders.StakeholderEntity;
 
 @Builder
 @AllArgsConstructor
@@ -18,7 +18,7 @@ import org.crm.crmback.infrastructure.stakeholders.StakeholderEntity;
 @Setter
 @Entity
 @Table(name = "stakeholder_types")
-public class StakeholderTypeEntity implements Serializable {
+public class StakeholderType implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,5 +45,5 @@ public class StakeholderTypeEntity implements Serializable {
   private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "stakeholderType")
-  private Set<StakeholderEntity> stakeholders = new LinkedHashSet<>();
+  private Set<Stakeholder> stakeholders = new LinkedHashSet<>();
 }

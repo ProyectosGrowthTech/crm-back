@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.addresses;
+package org.crm.crmback.domain.model.addresses;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -8,8 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
+import org.crm.crmback.domain.model.stakeholders.Stakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
-import org.crm.crmback.infrastructure.stakeholders.StakeholderEntity;
 
 @Builder
 @AllArgsConstructor
@@ -18,7 +18,7 @@ import org.crm.crmback.infrastructure.stakeholders.StakeholderEntity;
 @Setter
 @Entity
 @Table(name = "addresses")
-public class AddressEntity implements Serializable {
+public class Address implements Serializable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,8 +56,15 @@ public class AddressEntity implements Serializable {
   private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "businessAddress")
-  private Set<StakeholderEntity> stakeholdersBussinessAddress = new LinkedHashSet<>();
+  private Set<Stakeholder> stakeholdersBusinessAddress = new LinkedHashSet<>();
 
   @OneToMany(mappedBy = "taxAddress")
-  private Set<StakeholderEntity> stakeholdersTaxAddress = new LinkedHashSet<>();
+  private Set<Stakeholder> stakeholdersTaxAddress = new LinkedHashSet<>();
+
+  public Address(String street, String city, String postalCode, String country) {
+    this.street = street;
+    this.city = city;
+    this.postalCode = postalCode;
+    this.country = country;
+  }
 }
