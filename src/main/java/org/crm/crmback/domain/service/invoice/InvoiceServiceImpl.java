@@ -2,6 +2,7 @@ package org.crm.crmback.domain.service.invoice;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.crm.crmback.application.v1.invoice.dto.InvoiceDTO;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.domain.model.invoices.NewInvoiceData;
 import org.crm.crmback.infrastructure.invoices.facade.InvoicePersistenceFacade;
@@ -25,7 +26,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     return invoicePersistenceFacade.save(newInvoice);
   }
 
-  public List<Invoice> getInvoices(Integer page, Integer pageSize) {
+  public InvoiceDTO getInvoices(Integer page, Integer pageSize) {
     return invoicePersistenceFacade.getInvoices(page, pageSize);
   }
 
