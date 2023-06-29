@@ -3,6 +3,7 @@ package org.crm.crmback.infrastructure.invoices.facade;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.crm.crmback.application.v1.invoice.dto.InvoiceDTO;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
 import org.crm.crmback.infrastructure.invoices.entity.InvoiceEntity;
@@ -37,15 +38,17 @@ public class InvoicePersistenceFacadeImpl implements InvoicePersistenceFacade {
   }
 
   @Override
-  public List<Invoice> getInvoices(Integer page, Integer pageSize) {
+  public InvoiceDTO getInvoices(Integer page, Integer pageSize) {
 
     Pageable pageable = PageRequest.of(page, pageSize, Sort.by("Id").descending());
     List<InvoiceEntity> invoiceEntities = invoiceRepository.findAll(pageable);
+    long totalInvoices = invoiceRepository.count();
     List<Invoice> invoices = new ArrayList<>();
     for (InvoiceEntity invoiceEntity : invoiceEntities) {
       invoices.add(invoiceMapper.invoiceEntityToInvoice(invoiceEntity));
     }
-    return invoices;
+    InvoiceDTO invoiceDTO = new InvoiceDTO(invoices, totalInvoices);
+    return invoiceDTO;
   }
 
   @Override
