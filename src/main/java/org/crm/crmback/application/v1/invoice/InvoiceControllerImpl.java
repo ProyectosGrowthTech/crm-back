@@ -6,6 +6,7 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.crm.crmback.application.v1.invoice.dto.InvoiceDTO;
 import org.crm.crmback.application.v1.invoice.dto.InvoiceRequest;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.domain.model.invoices.NewInvoiceData;
@@ -25,16 +26,18 @@ public class InvoiceControllerImpl implements InvoiceController {
   public ResponseEntity<Invoice> createInvoice(@Valid InvoiceRequest requestBody) {
     NewInvoiceData newInvoiceData =
         new NewInvoiceData(
-            requestBody.invoiceDate(), requestBody.totalAmount(), requestBody.status());
+            requestBody.invoiceDate(),
+            requestBody.totalAmount(),
+            requestBody.status());
     Invoice resultInvoice = invoiceService.createInvoice(newInvoiceData);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
   }
 
   @Override
-  public ResponseEntity<List<Invoice>> getInvoices(
+  public ResponseEntity<InvoiceDTO> getInvoices(
       @PositiveOrZero Integer page, @Positive Integer pageSize) {
 
-    List<Invoice> resultInvoices = invoiceService.getInvoices(page, pageSize);
+    InvoiceDTO resultInvoices = invoiceService.getInvoices(page, pageSize);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoices);
   }
 

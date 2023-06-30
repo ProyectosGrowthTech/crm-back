@@ -1,6 +1,8 @@
 package org.crm.crmback.infrastructure.invoices.facade;
 
 import java.util.List;
+
+import org.crm.crmback.application.v1.invoice.dto.InvoiceDTO;
 import org.crm.crmback.domain.model.invoices.Invoice;
 
 public interface InvoicePersistenceFacade {
@@ -9,7 +11,7 @@ public interface InvoicePersistenceFacade {
 
   Invoice save(Invoice newInvoice);
 
-  List<Invoice> getInvoices(Integer page, Integer pageSize);
+  InvoiceDTO getInvoices(Integer page, Integer pageSize);
 
   boolean isExistingInvoice(Long id);
 
