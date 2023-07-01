@@ -1,10 +1,10 @@
 package org.crm.crmback.infrastructure.api.controllers.refresh;
 
 import lombok.RequiredArgsConstructor;
+import org.crm.crmback.application.v1.service.authentication.RefreshService;
+import org.crm.crmback.domain.model.security.LoginTokens;
 import org.crm.crmback.infrastructure.api.controllers.refresh.dto.RefreshTokenRequest;
 import org.crm.crmback.infrastructure.api.controllers.shared.dto.LoginCredentialsResponse;
-import org.crm.crmback.domain.model.security.LoginTokens;
-import org.crm.crmback.infrastructure.service.authentication.RefreshService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

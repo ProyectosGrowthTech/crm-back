@@ -5,10 +5,10 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceResponse;
-import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceRequest;
+import org.crm.crmback.application.v1.service.invoice.InvoiceService;
 import org.crm.crmback.domain.model.invoices.Invoice;
-import org.crm.crmback.infrastructure.service.invoice.InvoiceService;
+import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceRequest;
+import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,14 +21,16 @@ public class InvoiceControllerImpl implements InvoiceController {
   private final InvoiceService invoiceService;
 
   @Override
-  public ResponseEntity<Invoice> createInvoice(@Valid InvoiceRequest requestBody) {
+  public ResponseEntity<Invoice> createInvoice(@Valid InvoiceRequest invoiceRequest) {
 
-    Invoice newInvoice = new Invoice();
-    newInvoice.setInvoiceDate(requestBody.invoiceDate());
-    newInvoice.setTotalAmount(requestBody.totalAmount());
-    newInvoice.setStatus(requestBody.status());
+    Invoice invoice =
+        Invoice.builder()
+            .invoiceDate(invoiceRequest.invoiceDate())
+            .totalAmount(invoiceRequest.totalAmount())
+            .status(invoiceRequest.status())
+            .build();
 
-    Invoice resultInvoice = invoiceService.createInvoice(newInvoice);
+    Invoice resultInvoice = invoiceService.createInvoice(invoice);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
   }
 

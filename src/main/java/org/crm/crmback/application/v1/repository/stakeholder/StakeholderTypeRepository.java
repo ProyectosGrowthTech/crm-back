@@ -1,0 +1,6 @@
+package org.crm.crmback.application.v1.repository.stakeholder;
+
+import org.crm.crmback.domain.model.stakeholders.StakeholderType;
+import org.springframework.data.repository.CrudRepository;
+
+public interface StakeholderTypeRepository extends CrudRepository<StakeholderType, Long> {}

@@ -8,6 +8,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
+import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
 @Builder
 @AllArgsConstructor
@@ -31,11 +32,12 @@ public class Invoice implements Serializable {
   @Column(name = "status")
   private String status;
 
-  @Column(name = "modified_by")
-  private Long modifiedBy;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "modified_by")
+  private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "invoice")
-  private Set<InvoicesStakeholderEntity> invoicesStakeholders = new LinkedHashSet<>();
+  private Set<InvoicesStakeholder> invoicesStakeholders = new LinkedHashSet<>();
 
   @Column(name = "created_at")
   private Instant createdAt;
