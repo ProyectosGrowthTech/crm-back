@@ -1,8 +1,0 @@
-package org.crm.crmback.infrastructure.service.authentication;
-
-import org.crm.crmback.domain.model.security.LoginTokens;
-
-public interface RefreshService {
-
-  LoginTokens refreshToken(String refreshToken);
-}

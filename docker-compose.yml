@@ -1,6 +1,7 @@
 version: "3.5"
 
 services:
+
   backend:
     build:
       context: ./
@@ -29,7 +30,6 @@ services:
     restart: always
     networks:
       - backend
-
 
 networks:
   backend:

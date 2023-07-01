@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
 import org.crm.crmback.domain.model.addresses.Address;
-import org.crm.crmback.domain.model.invoices.InvoicesStakeholderEntity;
+import org.crm.crmback.domain.model.invoices.InvoicesStakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
 @Builder
@@ -73,7 +73,7 @@ public class Stakeholder implements Serializable {
   private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "stakeholder")
-  private Set<InvoicesStakeholderEntity> invoicesStakeholders = new LinkedHashSet<>();
+  private Set<InvoicesStakeholder> invoicesStakeholders = new LinkedHashSet<>();
 
   public Stakeholder(
       String name,

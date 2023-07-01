@@ -1,7 +1,7 @@
 package org.crm.crmback.domain.model.addresses;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -46,10 +46,10 @@ public class Address implements Serializable {
   private String country;
 
   @Column(name = "created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @Column(name = "updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "modified_by")
@@ -60,11 +60,4 @@ public class Address implements Serializable {
 
   @OneToMany(mappedBy = "taxAddress")
   private Set<Stakeholder> stakeholdersTaxAddress = new LinkedHashSet<>();
-
-  public Address(String street, String city, String postalCode, String country) {
-    this.street = street;
-    this.city = city;
-    this.postalCode = postalCode;
-    this.country = country;
-  }
 }

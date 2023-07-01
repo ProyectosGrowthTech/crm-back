@@ -1,8 +1,8 @@
 package org.crm.crmback.infrastructure.api.controllers.advice;
 
-import org.crm.crmback.infrastructure.api.controllers.advice.dto.ErrorResponse;
 import org.crm.crmback.domain.exception.PasswordDoesNotMatchException;
 import org.crm.crmback.domain.exception.UserAlreadyExistsException;
+import org.crm.crmback.infrastructure.api.controllers.advice.dto.ErrorResponse;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
 import org.crm.crmback.infrastructure.exception.JwtException;
 import org.crm.crmback.infrastructure.exception.RsaKeyParserException;
