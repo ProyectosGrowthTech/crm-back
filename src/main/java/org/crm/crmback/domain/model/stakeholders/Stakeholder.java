@@ -9,8 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
 import org.crm.crmback.domain.model.addresses.Address;
-import org.crm.crmback.domain.model.stakeholdertypes.StakeholderType;
-import org.crm.crmback.infrastructure.invoicesstakeholders.InvoicesStakeholderEntity;
+import org.crm.crmback.domain.model.invoices.InvoicesStakeholderEntity;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
 @Builder
