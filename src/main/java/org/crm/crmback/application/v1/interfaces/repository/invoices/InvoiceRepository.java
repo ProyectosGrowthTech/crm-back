@@ -1,4 +1,4 @@
-package org.crm.crmback.application.v1.repository.invoices;
+package org.crm.crmback.application.v1.interfaces.repository.invoices;
 
 import java.util.List;
 import org.crm.crmback.domain.model.invoices.Invoice;

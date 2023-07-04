@@ -1,4 +1,4 @@
-package org.crm.crmback.application.v1.repository.addresses;
+package org.crm.crmback.application.v1.interfaces.repository.addresses;
 
 import java.util.List;
 import org.crm.crmback.domain.model.addresses.Address;

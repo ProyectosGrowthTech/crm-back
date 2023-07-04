@@ -2,7 +2,7 @@ package org.crm.crmback.infrastructure.facade.addresses;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.crm.crmback.application.v1.repository.addresses.AddressRepository;
+import org.crm.crmback.application.v1.interfaces.repository.addresses.AddressRepository;
 import org.crm.crmback.domain.model.addresses.Address;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
 import org.springframework.data.domain.PageRequest;

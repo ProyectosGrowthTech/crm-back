@@ -2,7 +2,8 @@ package org.crm.crmback.infrastructure.facade.invoices;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.crm.crmback.application.v1.repository.invoices.InvoiceRepository;
+import org.crm.crmback.application.v1.interfaces.facade.invoice.InvoicePersistenceFacade;
+import org.crm.crmback.application.v1.interfaces.repository.invoices.InvoiceRepository;
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceResponse;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
