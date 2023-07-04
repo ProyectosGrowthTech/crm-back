@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.facade.invoices;
+package org.crm.crmback.application.v1.interfaces.facade.invoice;
 
 import org.crm.crmback.domain.model.invoices.Invoice;
 import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceResponse;

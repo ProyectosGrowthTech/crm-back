@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.facade;
+package org.crm.crmback.application.v1.interfaces.facade.stakeholder;
 
 import java.util.List;
 import org.crm.crmback.domain.model.stakeholders.Stakeholder;

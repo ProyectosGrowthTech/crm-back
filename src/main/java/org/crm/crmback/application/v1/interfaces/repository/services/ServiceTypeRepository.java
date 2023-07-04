@@ -1,4 +1,4 @@
-package org.crm.crmback.application.v1.repository.services;
+package org.crm.crmback.application.v1.interfaces.repository.services;
 
 import org.crm.crmback.domain.model.services.ServiceType;
 import org.springframework.data.repository.CrudRepository;

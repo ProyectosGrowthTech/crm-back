@@ -1,4 +1,4 @@
-package org.crm.crmback.application.v1.repository.stakeholder;
+package org.crm.crmback.application.v1.interfaces.repository.stakeholder;
 
 import java.util.List;
 import org.crm.crmback.domain.model.stakeholders.Stakeholder;
