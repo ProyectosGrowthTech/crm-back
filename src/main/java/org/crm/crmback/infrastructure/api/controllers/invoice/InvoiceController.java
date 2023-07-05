@@ -63,7 +63,7 @@ public class InvoiceController {
   }
 
   @CrossOrigin(origins = "http://localhost:3000")
-  @GetMapping(
+  @DeleteMapping(
       path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)

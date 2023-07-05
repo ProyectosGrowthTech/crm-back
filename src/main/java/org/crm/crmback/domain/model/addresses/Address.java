@@ -27,8 +27,8 @@ public class Address implements Serializable {
 
   @Size(max = 255)
   @NotNull
-  @Column(name = "street", nullable = false)
-  private String street;
+  @Column(name = "address_line", nullable = false)
+  private String addressLine;
 
   @Size(max = 255)
   @NotNull
@@ -45,6 +45,16 @@ public class Address implements Serializable {
   @Column(name = "country", nullable = false)
   private String country;
 
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "address_name", nullable = false)
+  private String addressName;
+
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "state", nullable = false)
+  private String state;
+
   @Column(name = "created_at")
   private Instant createdAt;
 
@@ -55,9 +65,4 @@ public class Address implements Serializable {
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 
-  @OneToMany(mappedBy = "businessAddress")
-  private Set<Stakeholder> stakeholdersBusinessAddress = new LinkedHashSet<>();
-
-  @OneToMany(mappedBy = "taxAddress")
-  private Set<Stakeholder> stakeholdersTaxAddress = new LinkedHashSet<>();
 }

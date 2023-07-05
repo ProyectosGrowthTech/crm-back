@@ -21,6 +21,7 @@ public class AddressController {
 
   private final AddressService addressService;
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -28,10 +29,12 @@ public class AddressController {
 
     Address address =
         Address.builder()
-            .street(requestBody.street())
+            .addressLine(requestBody.addressLine())
             .city(requestBody.city())
             .postalCode(requestBody.postalCode())
             .country(requestBody.country())
+                .addressName(requestBody.addressName())
+                .state(requestBody.state())
             .build();
     Address resultAddress = addressService.createAddress(address);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultAddress);
