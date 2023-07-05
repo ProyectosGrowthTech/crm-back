@@ -74,23 +74,4 @@ public class Stakeholder implements Serializable {
 
   @OneToMany(mappedBy = "stakeholder")
   private Set<InvoicesStakeholder> invoicesStakeholders = new LinkedHashSet<>();
-
-  public Stakeholder(
-      String name,
-      String type,
-      String identificationCode,
-      String email,
-      String phone,
-      Address businessAddress,
-      Address taxAddress,
-      StakeholderType stakeholderType) {
-    this.name = name;
-    this.type = type;
-    this.identificationCode = identificationCode;
-    this.email = email;
-    this.phone = phone;
-    this.businessAddress = businessAddress;
-    this.taxAddress = taxAddress;
-    this.stakeholderType = stakeholderType;
-  }
 }
