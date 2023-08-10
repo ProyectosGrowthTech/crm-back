@@ -3,15 +3,19 @@ package org.crm.crmback.application.v1.service.address;
 import java.time.*;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.crm.crmback.application.v1.interfaces.repository.addresses.AddressRepository;
 import org.crm.crmback.domain.model.addresses.Address;
-import org.crm.crmback.infrastructure.facade.addresses.AddressPersistenceFacade;
+import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AddressService {
 
-  private final AddressPersistenceFacade addressPersistenceFacade;
+  private final AddressRepository addressRepository;
 
   public Address createAddress(Address address) {
     LocalDateTime localDateTime = LocalDateTime.now();
@@ -22,18 +26,25 @@ public class AddressService {
 
     address.setCreatedAt(Instant.now(Clock.systemDefaultZone()));
     address.setUpdatedAt(instant);
-    return addressPersistenceFacade.save(address);
+    return addressRepository.save(address);
   }
 
   public List<Address> getAddresses(Integer page, Integer pageSize) {
-    return addressPersistenceFacade.getAddresses(page, pageSize);
+    Pageable pageable = PageRequest.of(page, pageSize, Sort.by("Id").descending());
+    return addressRepository.findAll(pageable);
   }
 
   public Address getAddressById(Long id) {
-    return addressPersistenceFacade.findById(id);
+    Address foundAddress =
+        addressRepository
+            .findById(id)
+            .orElseThrow(() -> new ItemNotFoundException("Address " + id + " not found"));
+    return foundAddress;
   }
 
   public Address deleteAddressById(Long id) {
-    return addressPersistenceFacade.deleteAddressById(id);
+    Address address = addressRepository.findById(id).get();
+    addressRepository.delete(address);
+    return address;
   }
 }
