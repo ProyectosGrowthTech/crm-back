@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.crm.crmback.application.v1.interfaces.repository.addresses.AddressRepository;
 import org.crm.crmback.domain.model.addresses.Address;
+import org.crm.crmback.infrastructure.api.controllers.addresses.dto.AddressResponse;
 import org.crm.crmback.infrastructure.exception.ItemNotFoundException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,9 +30,12 @@ public class AddressService {
     return addressRepository.save(address);
   }
 
-  public List<Address> getAddresses(Integer page, Integer pageSize) {
+  public AddressResponse getAddresses(Integer page, Integer pageSize) {
     Pageable pageable = PageRequest.of(page, pageSize, Sort.by("Id").descending());
-    return addressRepository.findAll(pageable);
+    List<Address> addresses = addressRepository.findAll(pageable);
+    long totalAddresses = addressRepository.count();
+    AddressResponse addressResponse = new AddressResponse(addresses, totalAddresses);
+    return addressResponse;
   }
 
   public Address getAddressById(Long id) {

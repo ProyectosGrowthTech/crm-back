@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.api.controllers.invoice.dto;
+package org.crm.crmback.infrastructure.api.controllers.invoices.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;

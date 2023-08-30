@@ -1,7 +1,7 @@
 package org.crm.crmback.application.v1.interfaces.facade.invoice;
 
 import org.crm.crmback.domain.model.invoices.Invoice;
-import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceResponse;
+import org.crm.crmback.infrastructure.api.controllers.invoices.dto.InvoiceResponse;
 
 public interface InvoicePersistenceFacade {
 

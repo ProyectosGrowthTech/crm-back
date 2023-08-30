@@ -1,4 +1,4 @@
-package org.crm.crmback.infrastructure.api.controllers.invoice;
+package org.crm.crmback.infrastructure.api.controllers.invoices;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.crm.crmback.application.v1.service.invoice.InvoiceService;
 import org.crm.crmback.domain.model.invoices.Invoice;
-import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceRequest;
-import org.crm.crmback.infrastructure.api.controllers.invoice.dto.InvoiceResponse;
+import org.crm.crmback.infrastructure.api.controllers.invoices.dto.InvoiceRequest;
+import org.crm.crmback.infrastructure.api.controllers.invoices.dto.InvoiceResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

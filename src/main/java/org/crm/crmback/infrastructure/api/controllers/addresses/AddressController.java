@@ -1,13 +1,13 @@
-package org.crm.crmback.infrastructure.api.controllers.address;
+package org.crm.crmback.infrastructure.api.controllers.addresses;
 
-import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.crm.crmback.application.v1.service.address.AddressService;
 import org.crm.crmback.domain.model.addresses.Address;
-import org.crm.crmback.infrastructure.api.controllers.address.dto.AddressRequest;
+import org.crm.crmback.infrastructure.api.controllers.addresses.dto.AddressRequest;
+import org.crm.crmback.infrastructure.api.controllers.addresses.dto.AddressResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +33,8 @@ public class AddressController {
             .city(requestBody.city())
             .postalCode(requestBody.postalCode())
             .country(requestBody.country())
-                .addressName(requestBody.addressName())
-                .state(requestBody.state())
+            .addressName(requestBody.addressName())
+            .state(requestBody.state())
             .build();
     Address resultAddress = addressService.createAddress(address);
     return ResponseEntity.status(HttpStatus.CREATED).body(resultAddress);
@@ -43,12 +43,12 @@ public class AddressController {
   @GetMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<List<Address>> getAddresses(
+  public ResponseEntity<AddressResponse> getAddresses(
       @RequestParam(name = "page", defaultValue = "0") @Positive Integer page,
       @RequestParam(name = "pageSize", defaultValue = "10") @Positive Integer pageSize) {
 
-    List<Address> resultInvoices = addressService.getAddresses(page, pageSize);
-    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoices);
+    AddressResponse resultAddresses = addressService.getAddresses(page, pageSize);
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultAddresses);
   }
 
   @GetMapping(
@@ -57,8 +57,8 @@ public class AddressController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Address> getAddressById(@PathVariable("id") Long id) {
 
-    Address resultInvoice = addressService.getAddressById(id);
-    return ResponseEntity.status(HttpStatus.CREATED).body(resultInvoice);
+    Address resultAddress = addressService.getAddressById(id);
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultAddress);
   }
 
   @DeleteMapping(
