@@ -45,7 +45,7 @@ public class Product implements Serializable {
   @Column(name = "updated_at")
   private Date updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 

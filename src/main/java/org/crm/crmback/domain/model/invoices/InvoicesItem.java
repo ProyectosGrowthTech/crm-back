@@ -25,11 +25,11 @@ public class InvoicesItem implements Serializable {
   @Column(name = "invoice_id", nullable = false)
   private Long invoiceId;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "service_id")
   private Service service;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "product_id")
   private Product product;
 
