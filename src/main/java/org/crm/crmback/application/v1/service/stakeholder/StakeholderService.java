@@ -27,15 +27,16 @@ public class StakeholderService {
     Pageable pageable = PageRequest.of(page, pageSize, Sort.by("Id").descending());
     List<Stakeholder> stakeholders = stakeholderRepository.findAll(pageable);
     long totalStakeholders = stakeholderRepository.count();
-    StakeholderResponse stakeholderResponse = new StakeholderResponse(stakeholders, totalStakeholders);
+    StakeholderResponse stakeholderResponse =
+        new StakeholderResponse(stakeholders, totalStakeholders);
     return stakeholderResponse;
   }
 
   public Stakeholder getStakeholderById(Long id) {
     Stakeholder foundStakeholder =
-            stakeholderRepository
-                    .findById(id)
-                    .orElseThrow(() -> new ItemNotFoundException("Invoice " + id + " not found"));
+        stakeholderRepository
+            .findById(id)
+            .orElseThrow(() -> new ItemNotFoundException("Invoice " + id + " not found"));
     return foundStakeholder;
   }
 

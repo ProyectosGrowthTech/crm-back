@@ -28,13 +28,14 @@ public class StakeholderController {
   @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Stakeholder> createStakeholder(@RequestBody @Valid StakeholderRequest requestBody) {
+  public ResponseEntity<Stakeholder> createStakeholder(
+      @RequestBody @Valid StakeholderRequest requestBody) {
 
     Address bussinessAddress = addressService.getAddressById(requestBody.businessAddressId());
     Address taxAddress = addressService.getAddressById(requestBody.taxAddressId());
 
     Stakeholder stakeholder =
-    Stakeholder.builder()
+        Stakeholder.builder()
             .name(requestBody.name())
             .type(requestBody.type())
             .identificationCode(requestBody.identificationCode())

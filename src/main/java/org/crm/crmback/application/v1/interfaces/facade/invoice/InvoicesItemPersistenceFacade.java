@@ -6,10 +6,10 @@ import org.crm.crmback.infrastructure.api.controllers.invoices.dto.InvoicesItemR
 public interface InvoicesItemPersistenceFacade {
 
   InvoicesItem findById(Long id);
+
   InvoicesItemResponse getItemsByInvoiceId(Integer page, Integer pageSize, Integer invoiceId);
 
   InvoicesItem save(InvoicesItem newItem);
-
 
   boolean isExistingInvoice(Long id);
 

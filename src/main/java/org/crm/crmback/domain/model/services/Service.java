@@ -50,7 +50,7 @@ public class Service implements Serializable {
   @Column(name = "updated_at")
   private Date updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 

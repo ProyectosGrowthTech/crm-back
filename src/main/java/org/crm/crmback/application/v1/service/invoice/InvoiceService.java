@@ -26,9 +26,12 @@ public class InvoiceService {
   public Invoice createInvoice(Invoice invoice, List<Long> stakeholders) {
     // TODO: Implement logic business to check if invoice already exists, that customer exists, etc.
     List<InvoicesStakeholder> invoiceStakeholder = new ArrayList<>();
-    stakeholders.stream().map(m -> invoiceStakeholder.add(
-            invoiceStakeholderservice.createInvoiceStakeolder(
-                    invoice, stakeholderService.getStakeholderById(m))));
+    stakeholders.stream()
+        .map(
+            m ->
+                invoiceStakeholder.add(
+                    invoiceStakeholderservice.createInvoiceStakeolder(
+                        invoice, stakeholderService.getStakeholderById(m))));
     invoice.setInvoicesStakeholders(Set.copyOf(invoiceStakeholder));
     return invoiceRepository.save(invoice);
   }
@@ -43,9 +46,9 @@ public class InvoiceService {
 
   public Invoice getInvoiceById(Long id) {
     Invoice foundInvoice =
-            invoiceRepository
-                    .findById(id)
-                    .orElseThrow(() -> new ItemNotFoundException("Invoice " + id + " not found"));
+        invoiceRepository
+            .findById(id)
+            .orElseThrow(() -> new ItemNotFoundException("Invoice " + id + " not found"));
     return foundInvoice;
   }
 

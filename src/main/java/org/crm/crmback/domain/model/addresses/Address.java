@@ -2,13 +2,10 @@ package org.crm.crmback.domain.model.addresses;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
-import org.crm.crmback.domain.model.stakeholders.Stakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
 @Builder
@@ -61,8 +58,7 @@ public class Address implements Serializable {
   @Column(name = "updated_at")
   private Instant updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
-
 }

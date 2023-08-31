@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
@@ -39,10 +41,11 @@ public class StakeholderType implements Serializable {
   @Column(name = "updated_at")
   private Date updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "stakeholderType")
+  @JsonBackReference
   private Set<Stakeholder> stakeholders = new LinkedHashSet<>();
 }

@@ -15,7 +15,8 @@ public class InvoiceStakeholderService {
   private final InvoicesStakeholderRepository invoicesStakeholderRepository;
 
   public InvoicesStakeholder createInvoiceStakeolder(Invoice invoice, Stakeholder stakeholder) {
-    // TODO: Implement logic business to check if invoice already exists, that stakeholder exists, etc.
+    // TODO: Implement logic business to check if invoice already exists, that stakeholder exists,
+    // etc.
     InvoicesStakeholder invoiceStakeholder =
         InvoicesStakeholder.builder().invoice(invoice).stakeholder(stakeholder).build();
     return invoicesStakeholderRepository.save(invoiceStakeholder);

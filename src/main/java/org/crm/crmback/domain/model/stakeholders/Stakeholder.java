@@ -7,20 +7,21 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.crm.crmback.domain.model.addresses.Address;
 import org.crm.crmback.domain.model.invoices.InvoicesStakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
-@Builder
-@AllArgsConstructor
+@Table(name = "stakeholders")
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "stakeholders")
+@Builder
 public class Stakeholder implements Serializable {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false)
@@ -49,16 +50,16 @@ public class Stakeholder implements Serializable {
   @Column(name = "phone", length = 20)
   private String phone;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "business_address_id")
   private Address businessAddress;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "tax_address_id")
   private Address taxAddress;
 
   @NotNull
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @ManyToOne(optional = false)
   @JoinColumn(name = "stakeholder_type_id", nullable = false)
   private StakeholderType stakeholderType;
 
@@ -68,10 +69,11 @@ public class Stakeholder implements Serializable {
   @Column(name = "updated_at")
   private Date updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "stakeholder")
-  private Set<InvoicesStakeholder> invoicesStakeholders = new LinkedHashSet<>();
+  @JsonBackReference
+  private Set<InvoicesStakeholder> invoicesStakeholders;
 }

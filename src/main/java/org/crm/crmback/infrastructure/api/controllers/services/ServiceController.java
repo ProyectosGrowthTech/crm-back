@@ -1,5 +1,7 @@
 package org.crm.crmback.infrastructure.api.controllers.services;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.crm.crmback.application.v1.service.address.AddressService;
@@ -13,13 +15,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Positive;
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/stakeholder")
+@RequestMapping("/v1/service")
 public class ServiceController {
 
   private final AddressService addressService;
@@ -29,13 +28,14 @@ public class ServiceController {
   @PostMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Stakeholder> createStakeholder(@RequestBody @Valid StakeholderRequest requestBody) {
+  public ResponseEntity<Stakeholder> createStakeholder(
+      @RequestBody @Valid StakeholderRequest requestBody) {
 
     Address bussinessAddress = addressService.getAddressById(requestBody.businessAddressId());
     Address taxAddress = addressService.getAddressById(requestBody.taxAddressId());
 
     Stakeholder stakeholder =
-    Stakeholder.builder()
+        Stakeholder.builder()
             .name(requestBody.name())
             .type(requestBody.type())
             .identificationCode(requestBody.identificationCode())

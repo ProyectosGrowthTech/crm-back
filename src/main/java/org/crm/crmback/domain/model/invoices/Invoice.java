@@ -7,16 +7,22 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "invoices")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Invoice implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,12 +38,13 @@ public class Invoice implements Serializable {
   @Column(name = "status")
   private String status;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "invoice")
-  private Set<InvoicesStakeholder> invoicesStakeholders = new LinkedHashSet<>();
+  private Set<InvoicesStakeholder> invoicesStakeholders;
 
   @Column(name = "created_at")
   private Instant createdAt;
@@ -45,7 +52,7 @@ public class Invoice implements Serializable {
   @Column(name = "updated_at")
   private Instant updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "invoice_type_id")
   private InvoiceType invoiceType;
 }
