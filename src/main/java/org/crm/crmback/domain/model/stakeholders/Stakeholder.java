@@ -1,27 +1,25 @@
 package org.crm.crmback.domain.model.stakeholders;
 
+import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
 import org.crm.crmback.domain.model.addresses.Address;
-import org.crm.crmback.domain.model.stakeholdertypes.StakeholderType;
-import org.crm.crmback.infrastructure.invoicesstakeholders.InvoicesStakeholderEntity;
+import org.crm.crmback.domain.model.invoices.InvoicesStakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
-@Builder
-@AllArgsConstructor
+@Table(name = "stakeholders")
+@Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "stakeholders")
+@Builder
 public class Stakeholder implements Serializable {
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", nullable = false)
@@ -50,16 +48,16 @@ public class Stakeholder implements Serializable {
   @Column(name = "phone", length = 20)
   private String phone;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "business_address_id")
   private Address businessAddress;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "tax_address_id")
   private Address taxAddress;
 
   @NotNull
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @ManyToOne(optional = false)
   @JoinColumn(name = "stakeholder_type_id", nullable = false)
   private StakeholderType stakeholderType;
 
@@ -69,29 +67,11 @@ public class Stakeholder implements Serializable {
   @Column(name = "updated_at")
   private Date updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 
   @OneToMany(mappedBy = "stakeholder")
-  private Set<InvoicesStakeholderEntity> invoicesStakeholders = new LinkedHashSet<>();
-
-  public Stakeholder(
-      String name,
-      String type,
-      String identificationCode,
-      String email,
-      String phone,
-      Address businessAddress,
-      Address taxAddress,
-      StakeholderType stakeholderType) {
-    this.name = name;
-    this.type = type;
-    this.identificationCode = identificationCode;
-    this.email = email;
-    this.phone = phone;
-    this.businessAddress = businessAddress;
-    this.taxAddress = taxAddress;
-    this.stakeholderType = stakeholderType;
-  }
+  @JsonBackReference
+  private Set<InvoicesStakeholder> invoicesStakeholders;
 }

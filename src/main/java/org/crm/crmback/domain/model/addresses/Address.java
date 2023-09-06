@@ -1,14 +1,11 @@
 package org.crm.crmback.domain.model.addresses;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.time.Instant;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.*;
-import org.crm.crmback.domain.model.stakeholders.Stakeholder;
 import org.crm.crmback.infrastructure.rdbms.entity.UserEntity;
 
 @Builder
@@ -27,8 +24,8 @@ public class Address implements Serializable {
 
   @Size(max = 255)
   @NotNull
-  @Column(name = "street", nullable = false)
-  private String street;
+  @Column(name = "address_line", nullable = false)
+  private String addressLine;
 
   @Size(max = 255)
   @NotNull
@@ -45,26 +42,23 @@ public class Address implements Serializable {
   @Column(name = "country", nullable = false)
   private String country;
 
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "address_name", nullable = false)
+  private String addressName;
+
+  @Size(max = 255)
+  @NotNull
+  @Column(name = "state", nullable = false)
+  private String state;
+
   @Column(name = "created_at")
-  private Date createdAt;
+  private Instant createdAt;
 
   @Column(name = "updated_at")
-  private Date updatedAt;
+  private Instant updatedAt;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
-
-  @OneToMany(mappedBy = "businessAddress")
-  private Set<Stakeholder> stakeholdersBusinessAddress = new LinkedHashSet<>();
-
-  @OneToMany(mappedBy = "taxAddress")
-  private Set<Stakeholder> stakeholdersTaxAddress = new LinkedHashSet<>();
-
-  public Address(String street, String city, String postalCode, String country) {
-    this.street = street;
-    this.city = city;
-    this.postalCode = postalCode;
-    this.country = country;
-  }
 }
