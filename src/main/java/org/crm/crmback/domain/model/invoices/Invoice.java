@@ -42,7 +42,7 @@ public class Invoice implements Serializable {
   @JoinColumn(name = "modified_by")
   private UserEntity modifiedBy;
 
-  @JsonManagedReference
+
   @OneToMany(mappedBy = "invoice")
   private Set<InvoicesStakeholder> invoicesStakeholders;
 

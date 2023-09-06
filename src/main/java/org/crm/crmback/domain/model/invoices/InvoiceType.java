@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 @Builder
@@ -27,5 +29,6 @@ public class InvoiceType implements Serializable {
   private String description;
 
   @OneToMany(mappedBy = "invoiceType")
+  @JsonBackReference
   private Set<Invoice> invoices = new LinkedHashSet<>();
 }
