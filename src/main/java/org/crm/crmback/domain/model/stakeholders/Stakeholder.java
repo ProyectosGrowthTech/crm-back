@@ -1,14 +1,12 @@
 package org.crm.crmback.domain.model.stakeholders;
 
+import com.fasterxml.jackson.annotation.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.crm.crmback.domain.model.addresses.Address;
 import org.crm.crmback.domain.model.invoices.InvoicesStakeholder;
