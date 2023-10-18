@@ -38,6 +38,13 @@ public class AddressService {
     return addressResponse;
   }
 
+  public AddressResponse getAllAddresses() {
+    List<Address> addresses = (List<Address>) addressRepository.findAll();
+    long totalAddresses = addressRepository.count();
+    AddressResponse addressResponse = new AddressResponse(addresses, totalAddresses);
+    return addressResponse;
+  }
+
   public Address getAddressById(Long id) {
     Address foundAddress =
         addressRepository

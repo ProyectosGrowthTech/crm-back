@@ -18,6 +18,7 @@ application:
         - "/v2/sets"
         - "/v1/invoice/**/**"
         - "/v1/address/**/**"
+        - "/v1/stakeholder/**/**"
   hash:
     log-rounds: 12
   jwt:

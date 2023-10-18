@@ -49,6 +49,7 @@ public class StakeholderController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultStakeholder);
   }
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,6 +61,7 @@ public class StakeholderController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultStakeholders);
   }
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping(
       path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -70,6 +72,7 @@ public class StakeholderController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultStakeholder);
   }
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @DeleteMapping(
       path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,

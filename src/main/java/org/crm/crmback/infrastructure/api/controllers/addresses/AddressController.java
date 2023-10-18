@@ -40,6 +40,7 @@ public class AddressController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultAddress);
   }
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping(
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,6 +52,18 @@ public class AddressController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultAddresses);
   }
 
+  @CrossOrigin(origins = "http://localhost:3000")
+  @GetMapping(
+      path = "/all",
+      consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<AddressResponse> getAllAddresses() {
+
+    AddressResponse resultAddresses = addressService.getAllAddresses();
+    return ResponseEntity.status(HttpStatus.CREATED).body(resultAddresses);
+  }
+
+  @CrossOrigin(origins = "http://localhost:3000")
   @GetMapping(
       path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -61,6 +74,7 @@ public class AddressController {
     return ResponseEntity.status(HttpStatus.CREATED).body(resultAddress);
   }
 
+  @CrossOrigin(origins = "http://localhost:3000")
   @DeleteMapping(
       path = "/{id}",
       consumes = MediaType.APPLICATION_JSON_VALUE,
